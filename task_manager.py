@@ -16,7 +16,7 @@ dictionary = dict(zip(username, password)) #dictionary combines lists at index
 #found using https://realpython.com/python-zip-function/
 
 #log on section where user gets locked out after 3 attempts
-counter = 0 #counter will be used for number of logon attempts
+login_number = 0 #counter will be used for number of logon attempts
 while True:
     user_username = input("Please enter your username: ") #ask user to input username
     user_password = input("Please enter your password: ") #ask user to input password
@@ -28,16 +28,16 @@ while True:
         #wrong input if username or password are wrong
         print('''Sorry your input is not valid. 
         Please try again!''') #ask user to try again
-        counter += 1 #add to counter every log on failure
-        if counter == 3: #output 3 logon attempts failed
+        login_number += 1 #add to counter every log on failure
+        if login_number == 3: #output 3 logon attempts failed
             print("Your login has failed on three attempts.")
             break
         continue
 
-if counter == 3: 
+if login_number == 3: 
     print('''You are now locked out. 
         Please contact admin support.''') #output locked out
-elif counter < 3: #user continues to menu if logon is correct
+elif login_number < 3: #user continues to menu if logon is correct
     while True:
     # Present the menu to the user
     # make sure that the user input is converted to lower case.
