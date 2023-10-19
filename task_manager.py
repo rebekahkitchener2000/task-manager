@@ -1,6 +1,7 @@
 from datetime import date #to print current date
 from datetime import datetime
 
+#code creates a dictionary of usernames and passwords from file
 print("Good Morning!")
 print("Please log in below: ")
 with open ("user.txt", "r") as file: #open file to view
@@ -14,6 +15,7 @@ with open ("user.txt", "r") as file: #open file to view
 dictionary = dict(zip(username, password)) #dictionary combines lists at index
 #found using https://realpython.com/python-zip-function/
 
+#log on section where user gets locked out after 3 attempts
 counter = 0 #counter will be used for number of logon attempts
 while True:
     user_username = input("Please enter your username: ") #ask user to input username
@@ -57,10 +59,13 @@ elif counter < 3: #user continues to menu if logon is correct
         e - exit
         : ''').lower() #ask user to input from selected menu
 
+        #user not admin menu
         if menu == 'r' and user_username != "admin":
             print("You do not have access to register new users.") 
             #output to user that they cannot register users.
-        elif menu == "r" and user_username == "admin":#continue if user is admin
+       
+        #continue if user is admin     
+        elif menu == "r" and user_username == "admin":
             pass
             while True:
                 new_username = input("Please enter a new username: ") #user enter name
@@ -79,7 +84,8 @@ elif counter < 3: #user continues to menu if logon is correct
                     continue
             with open ("user.txt", "a") as file: #open user.txt file
                 file.write(f"\n{new_username}, {new_password}") #write username, password to file
-                   
+
+        #user chooses add task           
         elif menu == 'a': #user chooses add task
             pass
             while True:
@@ -102,6 +108,7 @@ elif counter < 3: #user continues to menu if logon is correct
 {task_username}, {task_title}, {task_description}, {task_date}, {current_date}, {task_complete}''')
                 #write new task to file
 
+        #user chooses to view all tasks
         elif menu == 'va': #user wants to view all tasks
             pass
             with open('tasks.txt', 'r') as f: #open tasks.txt file
@@ -119,6 +126,7 @@ elif counter < 3: #user continues to menu if logon is correct
                     Task description:
                         {new_line[2]}''') #output task details
 
+        #user chooses to view my tasks
         elif menu == 'vm':
             pass
             with open('tasks.txt', 'r') as f: #open tasks.txt file
@@ -224,7 +232,8 @@ elif counter < 3: #user continues to menu if logon is correct
                         elif edit_or_menu == 'm':
                             break    
 
-        elif menu == 's': #admin user chooses to display statistics
+        #admin user chooses to display statistics
+        elif menu == 's': 
             pass
             number_tasks = 0 #set number of tasks to 0
             with open('tasks.txt', 'r') as f:
@@ -272,13 +281,15 @@ elif counter < 3: #user continues to menu if logon is correct
             #calculate percentage of tasks incomplete
             print(f"The percentage of tasks incomplete is: {percentage_tasks_complete} %")
 
+        #user chooese to exit menu
         elif menu == 'e': #user chooses to exit
             print('Goodbye!!!')
             exit()
 
+        #user enters invalid input so is asked to try again
         else:
             print("You have entered an invalid input. Please try again") 
-            #user enters invalid input so is asked to try again
+            
 
 
 
